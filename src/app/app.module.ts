@@ -21,7 +21,9 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
     BrowserAnimationsModule
   ],
   providers: [
-
+    {
+      provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
