@@ -1,0 +1,18 @@
+.container-dialog{
+    background-color: white;
+    padding: 1rem;
+}
+
+.container-btn-close{
+    display: flex;
+    justify-content: end;
+}
+
+.btn-close{
+    cursor: pointer;
+}
+
+.btn-close:hover{
+    transform: scale(1.08);
+    color: red;
+}

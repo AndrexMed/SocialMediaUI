@@ -1,0 +1,18 @@
+  .container-posts {
+    border: 1px solid black;
+    margin: 1rem;
+    padding: 1rem;
+    display: flex;
+    justify-content: start;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+  }
+
+  .example-card {
+    width: 300px;
+    margin-bottom: 8px;
+    height: 250px;
+    overflow: hidden;
+    padding: 0.3rem;
+    cursor: pointer;
+  }
