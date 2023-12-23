@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { PostService } from '../../../../services/post.service';
-import { ApiResponse } from '../../../../../models/getPostResponse.model';
+import { Item } from '../../../../../models/getPostResponse.model';
 
 @Component({
   selector: 'app-home',
@@ -11,12 +11,12 @@ export class HomeComponent implements OnInit {
 
   private postSvc = inject(PostService);
 
-  posts!: ApiResponse;
+  posts: Item[] = [];
 
   ngOnInit(): void {
     this.postSvc.getPosts().subscribe({
       next: (response) => {
-        this.posts = response;
+        this.posts = response.data;
         console.log(this.posts)
       },
       error: (error) => {

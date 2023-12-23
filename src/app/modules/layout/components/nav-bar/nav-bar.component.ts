@@ -16,4 +16,8 @@ export class NavBarComponent {
     this.tokenSvc.removeToken();
     this.router.navigate(['/login'])
   }
+
+  profile(){
+    this.router.navigate(['/profile'])
+  }
 }

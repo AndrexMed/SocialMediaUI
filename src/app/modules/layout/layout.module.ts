@@ -4,7 +4,9 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { LayoutRoutingModule } from './layout-routing.module';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 
-
+//Material
+import { MatMenuModule } from '@angular/material/menu';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -13,7 +15,9 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
   ],
   imports: [
     CommonModule,
-    LayoutRoutingModule
+    LayoutRoutingModule,
+    MatMenuModule,
+    MatButtonModule
   ]
 })
 export class LayoutModule { }

@@ -1,10 +1,9 @@
-<nav>
-    <ul>
-        <li>
-            <p>Nav Bar</p>
-        </li>
-        <li>
-            <button (click)="logout()">Salir</button>
-        </li>
-    </ul>
-</nav>
+<div class="container-nav">
+    <nav>
+        <button mat-raised-button color="primary" [matMenuTriggerFor]="menu">Account</button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item routerLink="profile">Profile</button>
+            <button mat-menu-item (click)="logout()">Sign Out</button>
+        </mat-menu>
+    </nav>
+</div>

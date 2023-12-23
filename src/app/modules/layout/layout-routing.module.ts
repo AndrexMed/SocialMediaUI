@@ -20,12 +20,12 @@ const routes: Routes = [
           import('../home/home.module').then((m) => m.HomeModule),
         canActivate: [authGuard]
       },
-      //   {
-      //     path: 'profile',
-      //     loadChildren: () =>
-      //       import('../profile/profile.module').then((m) => m.ProfileModule),
-      //     canActivate: [AuthGuard]
-      //   },
+      {
+        path: 'profile',
+        loadChildren: () =>
+          import('../profile/profile.module').then((m) => m.ProfileModule),
+        canActivate: [authGuard]
+      },
       //   {
       //     path: 'users',
       //     loadChildren: () =>
