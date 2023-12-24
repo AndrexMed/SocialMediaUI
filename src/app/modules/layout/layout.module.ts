@@ -7,6 +7,7 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 //Material
 import { MatMenuModule } from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
+import { DialogModule } from 'primeng/dialog';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import {MatButtonModule} from '@angular/material/button';
     CommonModule,
     LayoutRoutingModule,
     MatMenuModule,
-    MatButtonModule
+    MatButtonModule,
+    DialogModule
   ]
 })
 export class LayoutModule { }

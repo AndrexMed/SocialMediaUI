@@ -3,6 +3,7 @@ import { PostService } from '../../../../services/post.service';
 import { Item } from '../../../../../models/getPostResponse.model';
 import { Dialog } from '@angular/cdk/dialog';
 import { PostDialogComponent } from '../../components/post-dialog/post-dialog.component';
+import { AuthService } from '../../../../services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,7 @@ import { PostDialogComponent } from '../../components/post-dialog/post-dialog.co
 export class HomeComponent implements OnInit {
 
   private postSvc = inject(PostService);
-  private dialog = inject(Dialog)
+  private dialog = inject(Dialog);
 
   posts: Item[] = [];
 

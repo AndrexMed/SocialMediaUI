@@ -10,6 +10,8 @@ import { UserLogin } from '../../../../../models/userLogin.model';
   styleUrl: './login-form.component.scss'
 })
 export class LoginFormComponent {
+
+  loading: boolean = false;
   hide = true;
 
   constructor(private formBuilder: FormBuilder,
@@ -29,6 +31,8 @@ export class LoginFormComponent {
   daLogin() {
     if (this.loginForm.valid) {
 
+      this.loading = true;
+
       const { userName, password } = this.loginForm.getRawValue();
 
       const credentials: UserLogin = {
@@ -36,16 +40,17 @@ export class LoginFormComponent {
         password: password
       }
 
-      console.log(credentials)
-
-      this.authSvc.login(credentials).subscribe({
+      this.authSvc.loginAndGetProfile(credentials).subscribe({
         next: () => {
           this.router.navigate(['/app'])
         },
         error: (error) => {
           console.log(error)
+          this.loading = false;
         },
-        
+        complete: () => {
+          this.loading = false;
+        }
       })
     } else {
       this.loginForm.markAllAsTouched();

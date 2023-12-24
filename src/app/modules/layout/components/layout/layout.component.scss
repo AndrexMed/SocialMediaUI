@@ -3,3 +3,17 @@
     justify-content: space-between;
     padding: 0.5rem;
 }
+
+.contaniner-logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo-text{
+    text-wrap: wrap;
+    font-weight: bold;
+    text-decoration: underline;
+    font-size: 1.5rem;
+}

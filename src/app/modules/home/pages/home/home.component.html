@@ -1,12 +1,12 @@
 <div class="container-posts">
-
-    <!-- Cards with media area -->
-<mat-card class="example-card" *ngFor="let item of posts" (click)="openDialog($event, item)">
+  <!-- Cards with media area -->
+  <mat-card class="example-card" *ngFor="let item of posts" (click)="openDialog($event, item)">
     <mat-card-header>
       <mat-card-title-group>
         <mat-card-title>Post_Id: {{ item.id }}</mat-card-title>
+        <mat-card-subtitle>Creator: {{ item.userId }}</mat-card-subtitle>
         <mat-card-subtitle>{{ item.date | date }}</mat-card-subtitle>
-        <img mat-card-sm-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" >
+        <img mat-card-sm-image src="https://material.angular.io/assets/img/examples/shiba2.jpg">
       </mat-card-title-group>
     </mat-card-header>
     <mat-card-content>

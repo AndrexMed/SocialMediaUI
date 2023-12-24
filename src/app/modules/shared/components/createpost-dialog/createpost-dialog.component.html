@@ -1,0 +1,46 @@
+@if (loading) {
+<app-spinner />
+}
+<h1 mat-dialog-title>Create a new Post</h1>
+<div mat-dialog-content>
+
+  <div>
+    <form class="container-form-createpost" novalidate [formGroup]="createPostForm" (ngSubmit)="createPost()">
+
+      <mat-form-field class="example-form-field">
+        <mat-label>Title</mat-label>
+        <input matInput type="text" formControlName="title">
+        @if (createPostForm.controls.title) {
+        <button matSuffix mat-icon-button aria-label="Clear" (click)="createPostForm.controls.title.setValue('')">
+          <mat-icon>close</mat-icon>
+        </button>
+        }
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Leave a comment</mat-label>
+        <textarea matInput placeholder="Ex. It makes me feel..." formControlName="description"></textarea>
+      </mat-form-field>
+
+      <mat-form-field class="example-form-field">
+        <mat-label>Image</mat-label>
+        <input matInput type="text" formControlName="image">
+        @if (createPostForm.controls.image) {
+        <button matSuffix mat-icon-button aria-label="Clear" (click)="createPostForm.controls.image.setValue('')">
+          <mat-icon>close</mat-icon>
+        </button>
+        }
+      </mat-form-field>
+
+      <div mat-dialog-actions class="container-actions">
+        <button mat-button type="submit">Create</button>
+        <button mat-button mat-dialog-close cdkFocusInitial (click)="close()">Cancel</button>
+      </div>
+
+      <div class="container-date">
+        <h4>{{ date | date }}</h4>
+      </div>
+
+    </form>
+  </div>
+</div>

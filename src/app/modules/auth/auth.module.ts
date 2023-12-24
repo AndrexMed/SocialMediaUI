@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 //Components
 import { LoginFormComponent } from './components/login-form/login-form.component';
@@ -16,6 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -27,14 +27,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
   imports: [
     CommonModule,
     AuthRoutingModule,
-    ReactiveFormsModule,
+    SharedModule,
     
     MatInputModule,
     MatIconModule,
     MatButtonModule,
-    FormsModule,
-    MatFormFieldModule,
-    
+    MatFormFieldModule  
   ]
 })
 export class AuthModule { }

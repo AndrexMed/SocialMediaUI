@@ -1,8 +1,9 @@
 import { Injectable, inject } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { ApiResponse, Item } from '../../models/getPostResponse.model';
+import { ApiResponse } from '../../models/getPostResponse.model';
 import { checkToken } from '../interceptors/token.interceptor';
+import { Post } from '../../models/post.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,5 +15,9 @@ export class PostService {
 
   getPosts() {
     return this.http.get<ApiResponse>(`${this.apiURL}`, { context: checkToken() })
+  }
+
+  createPost(post: Post) {
+    return this.http.post(`${this.apiURL}`, post, { context: checkToken() })
   }
 }

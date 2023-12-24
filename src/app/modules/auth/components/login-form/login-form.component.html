@@ -1,4 +1,7 @@
-<form class="form" [formGroup]="loginForm" (ngSubmit)="daLogin()">
+@if (loading) {
+<app-spinner />
+}
+<form class="form" [formGroup]="loginForm" (ngSubmit)="daLogin()" novalidate>
 
     <h1>Social Media Beta v1.0</h1>
 

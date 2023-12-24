@@ -1,0 +1,20 @@
+.container-form-createpost {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.example-form-field {
+    width: 24rem;
+}
+
+.container-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.container-date {
+    display: flex;
+    justify-content: center;
+}
