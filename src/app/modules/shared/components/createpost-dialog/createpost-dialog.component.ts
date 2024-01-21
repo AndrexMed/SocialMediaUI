@@ -2,9 +2,11 @@ import { Component, Inject, inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { PostService } from '../../../../services/post.service';
-import { Post } from '../../../../../models/post.model';
+import { CreatePostDTO, Post } from '../../../../../models/post.model';
 import { AuthService } from '../../../../services/auth.service';
 import { User } from '../../../../../models/user.model';
+import { finalize } from 'rxjs';
+import { UserDetails } from '../../../../../models/auth.model';
 
 @Component({
   selector: 'app-createpost-dialog',
@@ -17,16 +19,16 @@ export class CreatepostDialogComponent {
 
   date = new Date();
 
-  user!: User | null;
-
   private formBuilder = inject(FormBuilder);
   private postSvc = inject(PostService);
   private authSvc = inject(AuthService);
 
+  user = this.authSvc.userSignal();
+
   ngOnInit(): void {
-    this.authSvc.user$.subscribe(user => {
-      this.user = user
-    });
+    // this.authSvc.user$.subscribe(user => {
+    //   this.user = user
+    // });
   }
 
   constructor(public dialogRef: MatDialogRef<CreatepostDialogComponent>) { }
@@ -52,8 +54,8 @@ export class CreatepostDialogComponent {
 
       const { title, description, image } = this.createPostForm.getRawValue();
 
-      const post: Post = {
-        userId: this.user?.id,
+      const post: CreatePostDTO = {
+        userId: this.user?.userId,
         date: new Date(),
         description: description,
         image: image,
@@ -61,18 +63,18 @@ export class CreatepostDialogComponent {
       }
       console.log(this.user);
 
-      this.postSvc.createPost(post).subscribe({
-        next: (response) => {
-          alert(response)
-        },
-        error: (error) => {
-          console.log(error)
-          this.loading = false;
-        },
-        complete: () => {
-          this.loading = false;
-        }
-      });
+      this.postSvc.createPost(post)
+        .pipe(
+          finalize(() => this.loading = false)
+        )
+        .subscribe({
+          next: (response) => {
+            alert(response)
+          },
+          error: (error) => {
+            console.log(error)
+          }
+        });
 
       this.close();
 

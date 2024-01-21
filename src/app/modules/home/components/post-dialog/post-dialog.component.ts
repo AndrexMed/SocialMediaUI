@@ -28,6 +28,7 @@ export class PostDialogComponent {
 
   close() {
     this.dialogRef.close();
+    console.log("Se cerro el dialog de ver post")
   }
 
   closeWithRta(rta: boolean) {

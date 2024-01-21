@@ -32,7 +32,7 @@ import { SharedModule } from '../shared/shared.module';
     MatInputModule,
     MatIconModule,
     MatButtonModule,
-    MatFormFieldModule  
+    MatFormFieldModule
   ]
 })
 export class AuthModule { }

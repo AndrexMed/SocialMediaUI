@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../../../services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserLogin } from '../../../../../models/userLogin.model';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-login-form',
@@ -40,18 +41,21 @@ export class LoginFormComponent {
         password: password
       }
 
-      this.authSvc.loginAndGetProfile(credentials).subscribe({
-        next: () => {
-          this.router.navigate(['/app'])
-        },
-        error: (error) => {
-          console.log(error)
-          this.loading = false;
-        },
-        complete: () => {
-          this.loading = false;
-        }
-      })
+      this.authSvc.loginAndGetProfile(credentials)
+        .pipe(
+          finalize(() => this.loading = false)
+        )
+        .subscribe({
+          next: (response) => {
+            if (response.item2 != null) {
+              this.router.navigate(['/app']);
+            }
+          },
+          error: (error) => {
+            console.error(error);
+            this.loginForm.reset();
+          }
+        })
     } else {
       this.loginForm.markAllAsTouched();
     }

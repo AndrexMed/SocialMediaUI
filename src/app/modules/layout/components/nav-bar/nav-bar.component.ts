@@ -1,10 +1,10 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { TokenService } from '../../../../services/token.service';
 import { Router } from '@angular/router';
 import { CreatepostDialogComponent } from '../../../shared/components/createpost-dialog/createpost-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from '../../../../services/auth.service';
-import { User } from '../../../../../models/user.model';
+import { UserDetails } from '../../../../../models/auth.model';
 
 @Component({
   selector: 'app-nav-bar',
@@ -18,12 +18,13 @@ export class NavBarComponent implements OnInit {
   private dialog = inject(MatDialog);
   private authSvc = inject(AuthService);
 
-  user: User | null = null
+  // user: UserDetails | null = null
+  userSignal = this.authSvc.userSignal;
 
   ngOnInit(): void {
-    this.authSvc.user$.subscribe(user => {
-      this.user = user
-    });
+    // this.authSvc.user$.subscribe(user => {
+    //   this.user = user
+    // });
   }
 
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {

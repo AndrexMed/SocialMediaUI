@@ -1,7 +1,7 @@
 <div class="container-nav">
     <nav class="nav">
         <button mat-button color="primary" (click)="openDialog('200','200')">Create Post</button>
-        <button mat-raised-button color="primary" [matMenuTriggerFor]="menu">{{ user?.userName }}</button>
+        <button mat-raised-button color="primary" [matMenuTriggerFor]="menu">{{ userSignal()?.user }}</button>
         <mat-menu #menu="matMenu">
             <button mat-menu-item routerLink="profile">Profile</button>
             <button mat-menu-item (click)="logout()">Sign Out</button>

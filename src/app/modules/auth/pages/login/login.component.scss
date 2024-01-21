@@ -1,12 +1,17 @@
-.container-login-form{
+app-login-form {
     width: 100%;
     height: 100%;
-    background: linear-gradient(lightgray,white);
+}
+
+.container-login {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(lightgray, white);
     display: grid;
     place-items: center;
 }
 
-.container-form{
+.container-form {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0.5rem;
@@ -16,10 +21,40 @@
     padding: 1rem;
 }
 
-.container-info{
+.container-login {
+    // border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-info {
     border: 1px solid black;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: relative;
+}
+
+.image-register {
+    position: absolute;
+    width: 250px;
+    opacity: 50%;
+    width: 100%;
+}
+
+.text-register {
+    z-index: 1;
+}
+
+@media (width < 760px) {
+    .container-form {
+        grid-template-columns: 1fr;
+    }
+
+    .image-register {
+        display: none;
+    }
 }
