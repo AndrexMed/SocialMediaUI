@@ -12,6 +12,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -27,11 +28,13 @@ import { MatIconModule } from '@angular/material/icon';
     MatIconModule,
     ReactiveFormsModule,
     FormsModule,
+    MatSnackBarModule
   ],
   exports: [
     SpinnerComponent,
     ReactiveFormsModule,
     FormsModule,
+    MatSnackBarModule
   ]
 })
 export class SharedModule { }

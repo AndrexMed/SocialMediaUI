@@ -7,6 +7,8 @@ import { AuthService } from '../../../../services/auth.service';
 import { User } from '../../../../../models/user.model';
 import { finalize } from 'rxjs';
 import { UserDetails } from '../../../../../models/auth.model';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackComponent } from '../snack/snack.component';
 
 @Component({
   selector: 'app-createpost-dialog',
@@ -31,7 +33,8 @@ export class CreatepostDialogComponent {
     // });
   }
 
-  constructor(public dialogRef: MatDialogRef<CreatepostDialogComponent>) { }
+  constructor(public dialogRef: MatDialogRef<CreatepostDialogComponent>,
+    private _snackBar: MatSnackBar) { }
 
   createPostForm = this.formBuilder.nonNullable.group({
     title: ['', [Validators.required, Validators.minLength(10)]],
@@ -61,7 +64,6 @@ export class CreatepostDialogComponent {
         image: image,
         title: title
       }
-      console.log(this.user);
 
       this.postSvc.createPost(post)
         .pipe(
@@ -72,7 +74,10 @@ export class CreatepostDialogComponent {
             alert(response)
           },
           error: (error) => {
-            console.log(error)
+            if (error.error.errors) {
+              console.log(error.error.errors[0].detail)
+              this.openSnackBar(error.error.errors[0].detail);
+            }
           }
         });
 
@@ -81,6 +86,14 @@ export class CreatepostDialogComponent {
     } else {
       this.createPostForm.markAllAsTouched();
     }
+  }
+
+  durationInSeconds = 5;
+  openSnackBar(message: string) {
+    this._snackBar.openFromComponent(SnackComponent, {
+      duration: this.durationInSeconds * 1000,
+      data: message
+    });
   }
 
 }

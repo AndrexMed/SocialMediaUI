@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { TokenService } from '../../../../services/token.service';
 import { Router } from '@angular/router';
 import { CreatepostDialogComponent } from '../../../shared/components/createpost-dialog/createpost-dialog.component';
@@ -18,13 +18,9 @@ export class NavBarComponent implements OnInit {
   private dialog = inject(MatDialog);
   private authSvc = inject(AuthService);
 
-  // user: UserDetails | null = null
   userSignal = this.authSvc.userSignal;
 
   ngOnInit(): void {
-    // this.authSvc.user$.subscribe(user => {
-    //   this.user = user
-    // });
   }
 
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
