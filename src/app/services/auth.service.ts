@@ -14,7 +14,7 @@ import { ApiResponse } from '../../models/getPostResponse.model';
 })
 export class AuthService {
 
-  apiUrl = `${environment.apiBaseURL}/api/Token`
+  apiUrl = `${environment.apiBaseURL}/Token`
 
   // private user = new BehaviorSubject<User | null>(null);
   // user$ = this.user.asObservable();

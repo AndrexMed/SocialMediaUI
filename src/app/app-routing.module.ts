@@ -1,20 +1,26 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
-import { authGuard } from './guards/auth.guard';
 import { redirectGuard } from './guards/redirect.guard';
 import { NotfoundComponent } from './modules/shared/pages/notfound/notfound.component';
+import { AuthGuard } from './guards/auth.guard';
+import { PermissionsGuard } from './guards/permissions.guard';
 
 const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./modules/auth/auth.module').then((m) => m.AuthModule),
-    canActivate: [redirectGuard]
+    //canActivate: [redirectGuard]
   },
   {
     path: 'app',
     loadChildren: () => import('./modules/layout/layout.module').then((m) => m.LayoutModule),
-    canActivate: [authGuard]
+    canActivate: [AuthGuard],
+    data: {
+      role: [
+        'Administrator'
+      ]
+    }
   },
   {
     path: '**',
@@ -23,7 +29,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {
+    preloadingStrategy: PreloadAllModules
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

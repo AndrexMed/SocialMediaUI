@@ -4,7 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 //Components
 import { NotfoundComponent } from './pages/notfound/notfound.component';
-import { SpinnerComponent } from './components/spinner/spinner.component';
 import { CreatepostDialogComponent } from './components/createpost-dialog/createpost-dialog.component';
 
 //Material
@@ -17,7 +16,6 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 @NgModule({
   declarations: [
     NotfoundComponent,
-    SpinnerComponent,
     CreatepostDialogComponent
   ],
   imports: [
@@ -31,7 +29,6 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatSnackBarModule
   ],
   exports: [
-    SpinnerComponent,
     ReactiveFormsModule,
     FormsModule,
     MatSnackBarModule

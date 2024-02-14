@@ -3,7 +3,6 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../../../services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserLogin } from '../../../../../models/userLogin.model';
-import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-login-form',
@@ -12,7 +11,6 @@ import { finalize } from 'rxjs';
 })
 export class LoginFormComponent {
 
-  loading: boolean = false;
   hide = true;
 
   constructor(private formBuilder: FormBuilder,
@@ -22,7 +20,7 @@ export class LoginFormComponent {
 
   loginForm = this.formBuilder.nonNullable.group({
     userName: ['', [Validators.required]],
-    password: ['', [Validators.required, Validators.minLength(6)]]
+    password: ['', [Validators.required, Validators.minLength(8)]]
   });
 
   clearInputUserName() {
@@ -32,8 +30,6 @@ export class LoginFormComponent {
   daLogin() {
     if (this.loginForm.valid) {
 
-      this.loading = true;
-
       const { userName, password } = this.loginForm.getRawValue();
 
       const credentials: UserLogin = {
@@ -42,9 +38,6 @@ export class LoginFormComponent {
       }
 
       this.authSvc.loginAndGetProfile(credentials)
-        .pipe(
-          finalize(() => this.loading = false)
-        )
         .subscribe({
           next: (response) => {
             if (response.item2 != null) {

@@ -17,8 +17,6 @@ import { SnackComponent } from '../snack/snack.component';
 })
 export class CreatepostDialogComponent {
 
-  loading: boolean = false;
-
   date = new Date();
 
   private formBuilder = inject(FormBuilder);
@@ -53,8 +51,6 @@ export class CreatepostDialogComponent {
   createPost() {
     if (this.createPostForm.valid) {
 
-      this.loading = true;
-
       const { title, description, image } = this.createPostForm.getRawValue();
 
       const post: CreatePostDTO = {
@@ -66,9 +62,6 @@ export class CreatepostDialogComponent {
       }
 
       this.postSvc.createPost(post)
-        .pipe(
-          finalize(() => this.loading = false)
-        )
         .subscribe({
           next: (response) => {
             alert(response)
